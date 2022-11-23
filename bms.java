@@ -1,5 +1,7 @@
+
 import java.io.InputStreamReader;
 import java.util.Scanner;
+import java.lang.String;
 
 class customer
 {
@@ -17,7 +19,6 @@ class customer
         this.balance = balance;
         this.loan_status = loan_status;
     }
-
 }
 
 class bms
@@ -31,8 +32,12 @@ class bms
         int choice;
         int money;
         int i = 0;
+        int loan;
 
         int flag1=0;
+        String history[];
+        history = new String[20];
+        int h=0;
         customer c[] = new customer[100];
 
         System.out.println("1. Create Account");
@@ -42,6 +47,7 @@ class bms
         System.out.println("5. Deposit Money");
         System.out.println("6. Apply for loan");
         System.out.println("7. Account History");
+        System.out.println("8.");
 
         do
         {
@@ -136,6 +142,7 @@ class bms
                             System.out.println("Account number: " + c[j].account_no);
                             System.out.println("Name of the account holder: " + c[j].name);
                             System.out.println("Balance: " + c[j].balance);
+                            System.out.println("Loan status 3" + c[j].loan_status);
                         }
                         else
                         {
@@ -178,6 +185,8 @@ class bms
                                 c[j].balance = c[j].balance - money;
                                 System.out.println("Successfully withdrew Rs "+money+" from Account Number "+id);
                                 System.out.print("Remaining Balance: "+c[j].balance);
+                                h=h+1;
+                                history[h]= ("w" + money);
                             }
                         }
                         else
@@ -211,9 +220,11 @@ class bms
 
                         if(c[j].password.equals(pass))
                         {
-                            c[j].balance = c[j].balance - money;
+                            c[j].balance = c[j].balance + money;
                             System.out.println("Successfully deposited Rs "+money+" in Account Number "+id);
                             System.out.print("Current Balance: "+c[j].balance);
+                            h=h+1;
+                            history[h]= ("d" + money);
                         }
                         else
                         {
@@ -229,11 +240,46 @@ class bms
 
             if(choice == 6)
             {
+                System.out.print("Enter the loan amount");
+                loan=sc.nextInt();
+                System.out.print("Enter account number");
+                id = sc.nextInt();
+                for(int j=0; j<i; j++)
+                {
+                    if(c[j].account_no == id)
+                    {
+                        System.out.print("Enter password");
+                        pass= sc.next();
+                        if(c[j].password.equals(pass))
+                        {
+                            c[j].loan_status = "Yes";
+                            System.out.println("The loan is approved"); 
+                        }
 
+                    }
+                }
             }
 
             if(choice == 7)
             {
+                System.out.println("The account history is");
+                for(int k=1; k<20; k++)
+                {
+                    if(history[k]==null)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        if(history[k].startsWith("w"))
+                        {
+                            System.out.println(history[k].replace("w", " ")+" was withdrawn");
+                        }
+                        else
+                        {
+                            System.out.println(history[k].replace("d", " ")+ " was deposited");
+                        }
+                    }
 
             }
         }while(flag1==0);
