@@ -35,7 +35,6 @@ public class bms
         int loan;
 
         customer c[] = new customer[100];
-        history h[] = new history[100];
         int flag1=0;
 
         do
@@ -139,7 +138,6 @@ public class bms
             if(choice == 6)
             {
                 loan(i, c);
-                
             }
 
             if(choice == 7)
@@ -147,14 +145,15 @@ public class bms
                 transfer(i, c);
             }
 
-            if(choice!=7 && choice!=6 && choice!=5 && choice!=4 && choice!=3 && choice!=2 && choice!=1)
+            if(choice!=7 && choice!=6 && choice!=5 && choice!=4 && choice!=3 && choice!=2 && choice!=1 && choice!=8)
             {
                 System.out.println();
-                System.out.println("Incorrect Option");
+                System.out.println("Incorrect Option!! Try again.");
             }
 
             if(choice==8)
             {
+                System.out.println("Exiting the system....");
                 flag1=1;
             }
 
@@ -189,14 +188,14 @@ public class bms
                         }
                         i--;
                         System.out.println();
-                        System.out.print("Account number "+id+" has been deleted");
+                        System.out.print("Account number "+id+" has been deleted.");
                         System.out.println();
                         k=1;
                     }
                     else
                     {
                         System.out.println();
-                        System.out.print("Incorrect Password! Try again! You have "+(tries-1)+" tries left");
+                        System.out.print("Incorrect Password! Try again! You have "+(tries-1)+" tries left.");
                         System.out.println();
                         tries = tries - 1;
                     }
@@ -206,7 +205,7 @@ public class bms
         if(flag == 0)
         {
             System.out.println();
-            System.out.println("Account number "+id+" doesnt exist");
+            System.out.println("Account number "+id+" doesnt exist.");
             System.out.println();
         }      
     }
@@ -225,7 +224,6 @@ public class bms
                 int k=0;
                 do
                 {
-                    sc.nextLine();
                     System.out.print("Enter Password: ");
                     pass = sc.nextLine();
                     System.out.println();
@@ -236,11 +234,12 @@ public class bms
                         System.out.println("Name of the account holder: " + c[j].name);
                         System.out.println("Balance: " + c[j].balance);
                         System.out.println("Balance in fixed deposit: "+c[j].fd_bal);
+                        System.out.println("Loan Status: "+c[j].loan_status);
                         k=1;
                     }
                     else
                     {
-                        System.out.println("Incorrect Password! Try again! You have "+(tries-1)+" tries left");
+                        System.out.println("Incorrect Password! Try again! You have "+(tries-1)+" tries left.");
                         tries=tries-1;
                     }
                 }while(k==0 && tries!=0);
@@ -248,7 +247,7 @@ public class bms
         }
         if(flag==0)
         {
-            System.out.println("Account number "+id+" doesnt exist");
+            System.out.println("Account number "+id+" doesnt exist.");
         }
     }
 
@@ -276,7 +275,7 @@ public class bms
                         int p=0;
                         do
                         {
-                            System.out.println("Where do you want to deposit? \nPress 1 for Current Balance\nPress 2 for Fixed Deposit: ");
+                            System.out.println("Where do you want to deposit? \nPress 1 for Current Balance\nPress 2 for Fixed Deposit ");
                             choice2 = sc.nextInt();
                             if(choice2 == 1)
                             {
@@ -300,7 +299,7 @@ public class bms
                     }
                     else
                     {
-                        System.out.print("Incorrect Password! Try again! You have "+(tries-1)+" tries left");
+                        System.out.print("Incorrect Password! Try again! You have "+(tries-1)+" tries left.");
                         tries = tries-1;
                     }
                 }while(k==0 && tries!=0);
@@ -308,7 +307,7 @@ public class bms
         }
         if(flag==0)
         {
-            System.out.println("Account number "+id+" doesnt exist");
+            System.out.println("Account number "+id+" doesnt exist.");
         }
     }
 
@@ -342,10 +341,11 @@ public class bms
                             System.out.println("Successfully withdrew Rs "+money+" from Account Number "+id);
                             System.out.print("Remaining Balance: "+c[j].balance);
                         }
+                        k=1;
                     }       
                     else
                     {
-                        System.out.print("Incorrect Password! Try again! You have "+(tries-1)+" tries left");
+                        System.out.print("Incorrect Password! Try again! You have "+(tries-1)+" tries left.");
                         tries = tries -1;
                     }
                 }while(k==0 && tries!=0);
@@ -353,7 +353,7 @@ public class bms
         }
         if(flag==0)
         {
-            System.out.println("Account number "+id+" doesnt exist");
+            System.out.println("Account number "+id+" doesnt exist.");
         }
     }
 
@@ -375,8 +375,8 @@ public class bms
         
         do
         {
-            System.out.println("Which type of loan do you want to apply for:");
-            System.out.println("1.Personal Loan\n2.Home Loan\n3.Car loan\n4.Gold Loan\n5.Education Loan");
+            System.out.println("Which type of loan do you want to apply for: ");
+            System.out.println("1.Personal Loan\n2.Home Loan\n3.Car loan\n4.Gold Loan\n5.Education Loan.");
             System.out.print("Enter your choice of loan: ");
             ch= sc.nextInt();
             switch(ch)
@@ -387,7 +387,7 @@ public class bms
                     roi=11.08;
                     System.out.println("Interest rate: "+roi);
                     amt= (loan)+((loan*roi*tp)/(100));
-                    System.out.println("Amount to be paid per annum is:"+amt);
+                    System.out.println("Amount to be paid per annum is: "+amt);
                     int p=0;
                     int tries=3;
                     sc.nextLine(); 
@@ -411,7 +411,7 @@ public class bms
                                 }
                                 else
                                 {
-                                    System.out.println("Incorrect Password! You have "+(tries-1)+" tries left. Try again");
+                                    System.out.println("Incorrect Password! You have "+(tries-1)+" tries left. Try again.");
                                     tries = tries -1 ;
                                 }
                             }while(tries!=0 && p==0);
@@ -426,11 +426,11 @@ public class bms
                     roi=8.40;
                     System.out.println("Interest rate: "+roi);
                     amt= loan+((loan*roi*tp)/100); 
-                    System.out.println("Amount to be paid per annum is:"+amt);
+                    System.out.println("Amount to be paid per annum is: "+amt);
                     int p=0;
                     int tries=3;
                     sc.nextLine();
-                    System.out.print("Enter account number:");
+                    System.out.print("Enter account number: ");
                     id = sc.nextLine();
                     for(int j=0; j<i; j++)
                     {
@@ -438,7 +438,7 @@ public class bms
                         {
                             do
                             {
-                                System.out.print("Enter password:");
+                                System.out.print("Enter password: ");
                                 pass= sc.nextLine();
                                 if(c[j].password.equals(pass))
                                 {
@@ -464,11 +464,11 @@ public class bms
                     roi=7.35;
                     System.out.println("Interest rate: "+roi);
                     amt= loan+((loan*roi*tp)/100);  
-                    System.out.println("Amount to be paid per annum is:"+amt);
+                    System.out.println("Amount to be paid per annum is: "+amt);
                     int p=0;
                     int tries=3;
                     sc.nextLine();
-                    System.out.print("Enter account number:");
+                    System.out.print("Enter account number: ");
                     id = sc.nextLine();
                     for(int j=0; j<i; j++)
                     {
@@ -476,7 +476,7 @@ public class bms
                         {
                             do
                             {
-                                System.out.print("Enter password:");
+                                System.out.print("Enter password: ");
                                 pass= sc.nextLine();
                                 if(c[j].password.equals(pass))
                                 {
@@ -502,11 +502,11 @@ public class bms
                     roi=10.65;
                     System.out.println("Interest rate: "+roi);
                     amt= loan+((loan*roi*tp)/100);
-                    System.out.println("Amount to be paid per annum is:"+amt);
+                    System.out.println("Amount to be paid per annum is: "+amt);
                     int p=0;
                     int tries=3;
                     sc.nextLine();
-                    System.out.print("Enter account number:");
+                    System.out.print("Enter account number: ");
                     id = sc.nextLine();
                     for(int j=0; j<i; j++)
                     {
@@ -514,7 +514,7 @@ public class bms
                         {
                             do
                             {
-                                System.out.print("Enter password:");
+                                System.out.print("Enter password: ");
                                 pass= sc.nextLine();
                                 if(c[j].password.equals(pass))
                                 {
@@ -540,11 +540,11 @@ public class bms
                     roi=8.55;
                     System.out.println("Interest rate: "+roi);
                     amt= loan+((loan*roi*tp)/100);               
-                    System.out.println("Amount to be paid per annum is:"+amt);
+                    System.out.println("Amount to be paid per annum is: "+amt);
                     int p=0;
                     int tries=3;
                     sc.nextLine();
-                    System.out.print("Enter account number:");
+                    System.out.print("Enter account number: ");
                     id = sc.nextLine();
                     for(int j=0; j<i; j++)
                     {
@@ -552,7 +552,7 @@ public class bms
                         {
                             do
                             {
-                                System.out.print("Enter password:");
+                                System.out.print("Enter password: ");
                                 pass= sc.nextLine();
                                 if(c[j].password.equals(pass))
                                 {
@@ -631,6 +631,7 @@ public class bms
                                 }
                             }
                         }
+                        k=1;
                     }
                     else
                     {
